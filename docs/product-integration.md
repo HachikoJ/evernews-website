@@ -10,6 +10,9 @@
 | 匿证 | `anonyproof.deline.top` | `https://anonyproof.deline.top/` |
 | 星仓印记 | `starvault.deline.top` | `https://starvault.deline.top/` |
 | 神笔宝宝 | `magic-draw-kids.deline.top` | `https://magic-draw-kids.deline.top/` |
+| 听间 Tingjian | `audio.deline.top` | `https://audio.deline.top/` |
+
+听间项目仓库：<https://github.com/HachikoJ/easy-radio-host>。官网展示图 `public/portfolio/tingjian-latest.png` 来自用户提供的真实产品截图。
 
 ## 产品侧必须满足
 

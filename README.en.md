@@ -27,6 +27,9 @@ The static export is written to `out/`; `npm run start` serves it locally.
 | AnonyProof | https://anonyproof.deline.top/ | Public preview |
 | StarVault Imprint | https://starvault.deline.top/ | In development |
 | Magic Draw Kids | https://magic-draw-kids.deline.top/ | In development |
+| Tingjian | https://audio.deline.top/ | Live |
+
+Tingjian is an AI music radio hosted by Xiaolan, with themed shows, song requests, favorites, and listening history. [Source code](https://github.com/HachikoJ/easy-radio-host).
 
 Integration and handoff rules are in [`docs/product-integration.md`](docs/product-integration.md).
 

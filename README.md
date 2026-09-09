@@ -44,6 +44,9 @@ npm run start
 | 匿证 | <https://anonyproof.deline.top/> | 公开预览 |
 | 星仓印记 | <https://starvault.deline.top/> | 研发中 |
 | 神笔宝宝 | <https://magic-draw-kids.deline.top/> | 研发中 |
+| 听间 Tingjian | <https://audio.deline.top/> | 已上线 |
+
+听间是小蓝主持的 AI 音乐电台，支持主题节目、点歌互动、收藏与收听历史。[项目源码](https://github.com/HachikoJ/easy-radio-host)。
 
 各产品的域名、根路径、跳转与部署边界见 [`docs/product-integration.md`](docs/product-integration.md)。
 

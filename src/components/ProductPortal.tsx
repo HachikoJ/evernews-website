@@ -13,6 +13,7 @@ import {
   MessageCircle,
   Palette,
   Radar,
+  Radio,
   Wrench
 } from 'lucide-react'
 import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from 'react'
@@ -31,27 +32,26 @@ interface PortfolioProduct {
   descZh: string
   descEn: string
   image: string
-  tone: 'feynman' | 'proof' | 'vault' | 'kids'
+  tone: 'feynman' | 'proof' | 'vault' | 'kids' | 'radio'
   statusZh: string
   statusEn: string
-  eyebrowZh?: string
-  eyebrowEn?: string
-  proofZh?: string
-  proofEn?: string
   tagsZh?: string[]
   tagsEn?: string[]
   action?: 'reader'
   href?: string
+  linkZh?: string
+  linkEn?: string
 }
 
 const products: PortfolioProduct[] = [
-  { name: 'Feynman Reader', titleZh: '费曼读书助手', titleEn: 'Feynman Reader', descZh: '把阅读、表达、追问和复习连成一条真正完成理解的路径。', descEn: 'Connect reading, explanation, questions, and review into real understanding.', image: '/portfolio/feynman-reader.png', tone: 'feynman', statusZh: '已上线', statusEn: 'Live', action: 'reader' },
-  { name: 'AnonyProof', titleZh: 'AnonyProof · 匿证', titleEn: 'AnonyProof', descZh: '把不方便署名的话，交给一个更安全、更有后续的反馈入口。', descEn: 'A safer, more accountable place for feedback that is difficult to sign.', image: '/portfolio/anonyproof.jpg', tone: 'proof', statusZh: '公开预览', statusEn: 'Public preview', eyebrowZh: '匿名反馈与跟进', eyebrowEn: 'Anonymous feedback workspace', proofZh: '无需公开姓名；使用匿名标识找回反馈，并查看处理进度。', proofEn: 'No public name is required; use an anonymous identifier to revisit feedback and its progress.', tagsZh: ['匿名提交', '反馈找回', '进度跟进'], tagsEn: ['Anonymous', 'Revisit feedback', 'Track progress'], href: 'https://anonyproof.deline.top/' },
-  { name: 'StarVault Imprint', titleZh: 'StarVault Imprint · 星仓印记', titleEn: 'StarVault Imprint', descZh: 'GitHub 项目监控与机会研判平台。', descEn: 'A GitHub monitoring and opportunity intelligence workspace.', image: '/portfolio/starvault-imprint.png', tone: 'vault', statusZh: '研发中', statusEn: 'In development', href: 'https://starvault.deline.top/' },
-  { name: 'Magic Draw Kids', titleZh: 'Magic Draw Kids', titleEn: 'Magic Draw Kids', descZh: '为儿童设计的分步绘画与创造力体验。', descEn: 'Step-by-step drawing and creative play designed for children.', image: '/portfolio/magic-draw-kids.png', tone: 'kids', statusZh: '研发中', statusEn: 'In development', href: 'https://magic-draw-kids.deline.top/' }
+  { name: 'Feynman Reader', titleZh: '费曼读书助手', titleEn: 'Feynman Reader', descZh: '把一本书读成自己的理解：解释、追问、复习，留下可回看的学习轨迹。', descEn: 'Turn a book into your own understanding through explanation, questions, and review.', image: '/portfolio/feynman-reader-latest.png', tone: 'feynman', statusZh: '已上线', statusEn: 'Live', action: 'reader', tagsZh: ['阅读理解', '费曼学习法', 'AI 助手'], tagsEn: ['Reading insight', 'Feynman method', 'AI study coach'], href: 'https://reader.deline.top/', linkZh: '打开读书助手', linkEn: 'Open reader' },
+  { name: 'AnonyProof', titleZh: 'AnonyProof · 匿证', titleEn: 'AnonyProof', descZh: '匿名提交敏感反馈，并用私密编号查看处理进展。', descEn: 'Submit sensitive feedback anonymously and follow its progress with a private tracking ID.', image: '/portfolio/anonyproof.jpg', tone: 'proof', statusZh: '公开预览', statusEn: 'Public preview', tagsZh: ['匿名提交', '反馈找回', '进度跟进'], tagsEn: ['Anonymous', 'Revisit feedback', 'Track progress'], href: 'https://anonyproof.deline.top/' },
+  { name: 'StarVault Imprint', titleZh: 'StarVault Imprint · 星仓印记', titleEn: 'StarVault Imprint', descZh: '持续观察 GitHub 项目，把值得关注的变化整理成行动线索。', descEn: 'Monitor GitHub projects and turn meaningful changes into actionable signals.', image: '/portfolio/starvault-imprint.png', tone: 'vault', statusZh: '研发中', statusEn: 'In development', tagsZh: ['项目监控', '变化追踪', '机会研判'], tagsEn: ['Project watch', 'Change tracking', 'Opportunity signals'], href: 'https://starvault.deline.top/' },
+  { name: 'Magic Draw Kids', titleZh: 'Magic Draw Kids', titleEn: 'Magic Draw Kids', descZh: '把想象拆成一步步可完成的绘画任务，让孩子边画边找到自己的方法。', descEn: 'Turn imagination into approachable drawing steps so children can discover their own way to create.', image: '/portfolio/magic-draw-kids.png', tone: 'kids', statusZh: '研发中', statusEn: 'In development', tagsZh: ['分步绘画', '儿童创作', '轻松上手'], tagsEn: ['Step-by-step', 'Creative play', 'Easy to start'], href: 'https://magic-draw-kids.deline.top/' },
+  { name: 'Tingjian', titleZh: '听间 · Tingjian', titleEn: 'Tingjian', descZh: '小蓝主持的 AI 音乐电台，选一个主题，让口播与在线歌曲串起一段收听时光。', descEn: 'An AI music radio hosted by Xiaolan, weaving spoken introductions and online songs into themed shows.', image: '/portfolio/tingjian-latest.png', tone: 'radio', statusZh: '已上线', statusEn: 'Live', tagsZh: ['主题电台', '点歌互动', '收藏与历史'], tagsEn: ['Themed shows', 'Song requests', 'Favorites & history'], href: 'https://audio.deline.top/', linkZh: '在线收听', linkEn: 'Listen online' }
 ]
 
-const productIcons = [Lightbulb, LockKeyhole, Radar, Palette]
+const productIcons = [Lightbulb, LockKeyhole, Radar, Palette, Radio]
 
 const skills = [
   ['demand-clarity-coach', '需求澄清', 'Demand clarity', '把模糊想法变成可判断、可执行的需求。', 'Turn fuzzy ideas into actionable requirements.'],
@@ -344,16 +344,16 @@ export default function ProductPortal({ lang = 'zh', onEnterReader, onLanguageCh
                   </div>
                 </div>
                 <div key={activeProduct.name} className="portfolio-stage-content">
-                  <div className={`portfolio-stage-media ${activeProduct.action ? 'is-product-interface' : ''}`}><Image src={activeProduct.image} alt={`${isZh ? activeProduct.titleZh : activeProduct.titleEn} ${isZh ? '产品界面' : 'product interface'}`} fill sizes="(min-width:1024px) 760px, 100vw" className={activeProduct.action ? 'object-contain object-center' : activeProduct.tone === 'proof' ? 'object-cover object-center' : 'object-cover object-top'} priority={activeProductIndex === 0} /></div>
+                  <div className={`portfolio-stage-media ${activeProduct.action || activeProduct.tone === 'radio' ? 'is-product-interface' : ''}`}><Image src={activeProduct.image} alt={`${isZh ? activeProduct.titleZh : activeProduct.titleEn} ${isZh ? '产品界面' : 'product interface'}`} fill sizes="(min-width:1024px) 760px, 100vw" className={activeProduct.action || activeProduct.tone === 'radio' ? 'object-contain object-center' : activeProduct.tone === 'proof' ? 'object-cover object-center' : 'object-cover object-top'} priority={activeProductIndex === 0} /></div>
                   <div className="portfolio-stage-copy">
                     <div className="portfolio-stage-copy-main">
-                      <div className="portfolio-stage-meta"><span className="portfolio-status">{isZh ? activeProduct.statusZh : activeProduct.statusEn}</span>{activeProduct.eyebrowZh && <span className="portfolio-stage-eyebrow">{isZh ? activeProduct.eyebrowZh : activeProduct.eyebrowEn}</span>}</div>
-                      <h3>{isZh ? activeProduct.titleZh : activeProduct.titleEn}</h3>
+                      <h3 className="portfolio-stage-title"><span>{isZh ? activeProduct.titleZh : activeProduct.titleEn}</span>{activeProduct.tagsZh && <span className="portfolio-stage-title-tags">{(isZh ? activeProduct.tagsZh : activeProduct.tagsEn)?.map(tag => <span key={tag}>{tag}</span>)}</span>}</h3>
                       <p>{isZh ? activeProduct.descZh : activeProduct.descEn}</p>
-                      {activeProduct.proofZh && <p className="portfolio-stage-proof"><LockKeyhole aria-hidden="true" />{isZh ? activeProduct.proofZh : activeProduct.proofEn}</p>}
-                      {activeProduct.tagsZh && <ul className="portfolio-stage-tags" aria-label={isZh ? '产品特点' : 'Product qualities'}>{(isZh ? activeProduct.tagsZh : activeProduct.tagsEn)?.map(tag => <li key={tag}>{tag}</li>)}</ul>}
                     </div>
-                    {activeProduct.action ? <button type="button" onClick={enterReader} className="portfolio-product-link">{isZh ? '进入费曼读书助手' : 'Open Feynman Reader'}<ArrowRight /></button> : activeProduct.href ? <a href={activeProduct.href} target="_blank" rel="noopener noreferrer" className="portfolio-product-link">{isZh ? '查看公开预览' : 'View public preview'}<ExternalLink /></a> : null}
+                    <div className="portfolio-product-actions">
+                      {activeProduct.href && <a href={activeProduct.href} target="_blank" rel="noopener noreferrer" className="portfolio-product-link">{isZh ? activeProduct.linkZh ?? '访问项目' : activeProduct.linkEn ?? 'Visit project'}<ExternalLink /></a>}
+                      {activeProduct.href && <span className="portfolio-product-url">{new URL(activeProduct.href).hostname}</span>}
+                    </div>
                   </div>
                 </div>
               </div>
