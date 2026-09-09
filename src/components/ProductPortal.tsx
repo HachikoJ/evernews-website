@@ -254,12 +254,15 @@ export default function ProductPortal({ lang = 'zh', onEnterReader, onLanguageCh
 
   const enterReader = () => {
     if (isLeaving) return
+    onEnterReader?.()
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      onEnterReader?.()
       return
     }
     setIsLeaving(true)
-    transitionTimerRef.current = window.setTimeout(() => onEnterReader?.(), 420)
+    transitionTimerRef.current = window.setTimeout(() => {
+      transitionTimerRef.current = null
+      setIsLeaving(false)
+    }, 420)
   }
 
   return (

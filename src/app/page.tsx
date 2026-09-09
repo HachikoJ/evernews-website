@@ -21,7 +21,7 @@ export default function PortalPage() {
   }
 
   const openReader = () => {
-    window.location.assign('https://reader.deline.top/')
+    window.open('https://reader.deline.top/', '_blank', 'noopener,noreferrer')
   }
 
   return <ProductPortal lang={lang} onEnterReader={openReader} onLanguageChange={changeLanguage} />
