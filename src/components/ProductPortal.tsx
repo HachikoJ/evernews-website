@@ -33,6 +33,7 @@ interface PortfolioProduct {
   descEn: string
   image: string
   tone: 'feynman' | 'proof' | 'vault' | 'kids' | 'radio'
+  aiEnabled: boolean
   statusZh: string
   statusEn: string
   tagsZh?: string[]
@@ -43,23 +44,39 @@ interface PortfolioProduct {
   linkEn?: string
 }
 
+interface PortfolioSkill {
+  slug: string
+  titleZh: string
+  titleEn: string
+  descZh: string
+  descEn: string
+  href?: string
+  workBuddyExpert?: boolean
+}
+
+function AiBadge() {
+  return <span className="portfolio-ai-badge">AI</span>
+}
+
 const products: PortfolioProduct[] = [
-  { name: 'Feynman Reader', titleZh: '费曼读书助手', titleEn: 'Feynman Reader', descZh: '把一本书读成自己的理解：解释、追问、复习，留下可回看的学习轨迹。', descEn: 'Turn a book into your own understanding through explanation, questions, and review.', image: '/portfolio/feynman-reader-latest.png', tone: 'feynman', statusZh: '已上线', statusEn: 'Live', action: 'reader', tagsZh: ['阅读理解', '费曼学习法', 'AI 助手'], tagsEn: ['Reading insight', 'Feynman method', 'AI study coach'], href: 'https://reader.deline.top/', linkZh: '打开读书助手', linkEn: 'Open reader' },
-  { name: 'AnonyProof', titleZh: 'AnonyProof · 匿证', titleEn: 'AnonyProof', descZh: '匿名提交敏感反馈，并用私密编号查看处理进展。', descEn: 'Submit sensitive feedback anonymously and follow its progress with a private tracking ID.', image: '/portfolio/anonyproof-latest.webp', tone: 'proof', statusZh: '已上线', statusEn: 'Live', tagsZh: ['匿名提交', '反馈找回', '进度跟进'], tagsEn: ['Anonymous', 'Revisit feedback', 'Track progress'], href: 'https://anonyproof.deline.top/' },
-  { name: 'StarVault Imprint', titleZh: 'StarVault Imprint · 星仓印记', titleEn: 'StarVault Imprint', descZh: '持续观察 GitHub 项目，把值得关注的变化整理成行动线索。', descEn: 'Monitor GitHub projects and turn meaningful changes into actionable signals.', image: '/portfolio/starvault-imprint-latest.webp', tone: 'vault', statusZh: '已上线', statusEn: 'Live', tagsZh: ['项目监控', '变化追踪', '机会研判'], tagsEn: ['Project watch', 'Change tracking', 'Opportunity signals'], href: 'https://starvault.deline.top/' },
-  { name: 'Magic Draw Kids', titleZh: 'Magic Draw Kids', titleEn: 'Magic Draw Kids', descZh: '把想象拆成一步步可完成的绘画任务，让孩子边画边找到自己的方法。', descEn: 'Turn imagination into approachable drawing steps so children can discover their own way to create.', image: '/portfolio/magic-draw-kids.png', tone: 'kids', statusZh: '研发中', statusEn: 'In development', tagsZh: ['分步绘画', '儿童创作', '轻松上手'], tagsEn: ['Step-by-step', 'Creative play', 'Easy to start'], href: 'https://magic-draw-kids.deline.top/' },
-  { name: 'Tingjian', titleZh: '听间 · Tingjian', titleEn: 'Tingjian', descZh: '小蓝主持的 AI 音乐电台，选一个主题，让口播与在线歌曲串起一段收听时光。', descEn: 'An AI music radio hosted by Xiaolan, weaving spoken introductions and online songs into themed shows.', image: '/portfolio/tingjian-latest.png', tone: 'radio', statusZh: '已上线', statusEn: 'Live', tagsZh: ['主题电台', '点歌互动', '收藏与历史'], tagsEn: ['Themed shows', 'Song requests', 'Favorites & history'], href: 'https://audio.deline.top/', linkZh: '在线收听', linkEn: 'Listen online' }
+  { name: 'Feynman Reader', titleZh: '费曼读书助手', titleEn: 'Feynman Reader', descZh: '把一本书读成自己的理解：解释、追问、复习，留下可回看的学习轨迹。', descEn: 'Turn a book into your own understanding through explanation, questions, and review.', image: '/portfolio/feynman-reader-latest.png', tone: 'feynman', aiEnabled: true, statusZh: '已上线', statusEn: 'Live', action: 'reader', tagsZh: ['阅读理解', '费曼学习法', 'AI 助手'], tagsEn: ['Reading insight', 'Feynman method', 'AI study coach'], href: 'https://reader.deline.top/', linkZh: '打开读书助手', linkEn: 'Open reader' },
+  { name: 'AnonyProof', titleZh: 'AnonyProof · 匿证', titleEn: 'AnonyProof', descZh: '匿名提交敏感反馈，并用私密编号查看处理进展。', descEn: 'Submit sensitive feedback anonymously and follow its progress with a private tracking ID.', image: '/portfolio/anonyproof-latest.webp', tone: 'proof', aiEnabled: false, statusZh: '已上线', statusEn: 'Live', tagsZh: ['匿名提交', '反馈找回', '进度跟进'], tagsEn: ['Anonymous', 'Revisit feedback', 'Track progress'], href: 'https://anonyproof.deline.top/' },
+  { name: 'StarVault Imprint', titleZh: 'StarVault Imprint · 星仓印记', titleEn: 'StarVault Imprint', descZh: '持续观察 GitHub 项目，把值得关注的变化整理成行动线索。', descEn: 'Monitor GitHub projects and turn meaningful changes into actionable signals.', image: '/portfolio/starvault-imprint-latest.webp', tone: 'vault', aiEnabled: true, statusZh: '已上线', statusEn: 'Live', tagsZh: ['项目监控', '变化追踪', '机会研判'], tagsEn: ['Project watch', 'Change tracking', 'Opportunity signals'], href: 'https://starvault.deline.top/' },
+  { name: 'Magic Draw Kids', titleZh: 'Magic Draw Kids', titleEn: 'Magic Draw Kids', descZh: '把想象拆成一步步可完成的绘画任务，让孩子边画边找到自己的方法。', descEn: 'Turn imagination into approachable drawing steps so children can discover their own way to create.', image: '/portfolio/magic-draw-kids.png', tone: 'kids', aiEnabled: false, statusZh: '研发中', statusEn: 'In development', tagsZh: ['分步绘画', '儿童创作', '轻松上手'], tagsEn: ['Step-by-step', 'Creative play', 'Easy to start'], href: 'https://magic-draw-kids.deline.top/' },
+  { name: 'Tingjian', titleZh: '听间 · Tingjian', titleEn: 'Tingjian', descZh: '小蓝主持的 AI 音乐电台，选一个主题，让口播与在线歌曲串起一段收听时光。', descEn: 'An AI music radio hosted by Xiaolan, weaving spoken introductions and online songs into themed shows.', image: '/portfolio/tingjian-latest.png', tone: 'radio', aiEnabled: true, statusZh: '已上线', statusEn: 'Live', tagsZh: ['主题电台', '点歌互动', '收藏与历史'], tagsEn: ['Themed shows', 'Song requests', 'Favorites & history'], href: 'https://audio.deline.top/', linkZh: '在线收听', linkEn: 'Listen online' }
 ]
 
 const productIcons = [Lightbulb, LockKeyhole, Radar, Palette, Radio]
 
-const skills = [
-  ['demand-clarity-coach', '需求澄清', 'Demand clarity', '把模糊想法变成可判断、可执行的需求。', 'Turn fuzzy ideas into actionable requirements.'],
-  ['enterprise-diagnostic-consultant', '企业诊断', 'Enterprise diagnosis', '在真实利益与执行约束下识别问题。', 'Diagnose organizations within real constraints.'],
-  ['ui-ux-design-router', '设计路由', 'Design routing', '统一产品、品牌与平面设计的决策路径。', 'Route product, brand, and graphic design coherently.'],
-  ['project-from-idea-to-product', '项目总控', 'Product delivery', '把软件想法持续推进到上线与交付。', 'Carry software ideas through launch and delivery.'],
-  ['crisis-pr-response', '危机回应', 'Crisis response', '为复杂公关事件建立事实、行动与风险边界。', 'Structure facts, action, and boundaries in a crisis.'],
-  ['fatal-ai-resignation', 'AI 事故辞职信', 'AI incident resignation', '把 AI 事故复盘与职场沟通变成可执行的回应。', 'Turn AI incident reviews and workplace communication into practical responses.']
+const skills: PortfolioSkill[] = [
+  { slug: 'demand-clarity-coach', titleZh: '需求澄清', titleEn: 'Demand clarity', descZh: '把模糊想法变成可判断、可执行的需求。', descEn: 'Turn fuzzy ideas into actionable requirements.', href: 'https://github.com/HachikoJ/demand-clarity-coach' },
+  { slug: 'enterprise-diagnostic-consultant', titleZh: '企业诊断', titleEn: 'Enterprise diagnosis', descZh: '在真实利益与执行约束下识别问题。', descEn: 'Diagnose organizations within real constraints.', href: 'https://github.com/HachikoJ/enterprise-diagnostic-consultant' },
+  { slug: 'ui-ux-design-router', titleZh: '设计路由', titleEn: 'Design routing', descZh: '统一产品、品牌与平面设计的决策路径。', descEn: 'Route product, brand, and graphic design coherently.', href: 'https://github.com/HachikoJ/ui-ux-design-router' },
+  { slug: 'project-from-idea-to-product', titleZh: '项目总控', titleEn: 'Product delivery', descZh: '把软件想法持续推进到上线与交付。', descEn: 'Carry software ideas through launch and delivery.', href: 'https://github.com/HachikoJ/project-from-idea-to-product' },
+  { slug: 'crisis-pr-response', titleZh: '危机回应', titleEn: 'Crisis response', descZh: '为复杂公关事件建立事实、行动与风险边界。', descEn: 'Structure facts, action, and boundaries in a crisis.', href: 'https://github.com/HachikoJ/crisis-pr-response' },
+  { slug: 'fatal-ai-resignation', titleZh: 'AI 事故辞职信', titleEn: 'AI incident resignation', descZh: '把 AI 事故复盘与职场沟通变成可执行的回应。', descEn: 'Turn AI incident reviews and workplace communication into practical responses.', href: 'https://github.com/HachikoJ/fatal-ai-resignation' },
+  { slug: 'atlas-project-document-table-intelligence', titleZh: '表脉 · 项目资料表格智能架构师', titleEn: 'Atlas · Project Document Table Intelligence Architect', descZh: '跨行业提取表格与关键事实，保留来源和层级，生成可核对公式、证据链与决策看板。', descEn: 'Extracts tables and key facts across industries, preserving sources and hierarchy to build verifiable formulas, evidence trails, and decision dashboards.', workBuddyExpert: true },
+  { slug: 'aster-ui-ux-design-systems-director', titleZh: '星衡 · UI/UX 设计系统总监', titleEn: 'Aster · UI/UX Design Systems Director', descZh: '把产品、品牌或混合设计任务分流到正确路径，再建立可执行、可验证的视觉与交互系统。', descEn: 'Routes product, brand, or mixed design work, then defines an executable visual and interaction system with clear validation.', href: 'https://github.com/HachikoJ/ui-ux-design-router', workBuddyExpert: true }
 ]
 
 const tools = [
@@ -319,7 +336,7 @@ export default function ProductPortal({ lang = 'zh', onEnterReader, onLanguageCh
                 const Icon = productIcons[index]
                 return <button key={product.name} type="button" aria-pressed={activeProductIndex === index} onClick={() => selectProduct(index, true)} className={`portfolio-build-lane tone-${product.tone} ${activeProductIndex === index ? 'is-active' : ''}`} style={{ '--lane-index': index } as CSSProperties}>
                   <span className="portfolio-build-icon"><Icon aria-hidden="true" /></span>
-                  <span className="min-w-0"><strong>{product.name}</strong><small>{isZh ? product.statusZh : product.statusEn}</small></span>
+                  <span className="min-w-0"><span className="portfolio-product-name"><strong>{product.name}</strong>{product.aiEnabled && <AiBadge />}</span><small>{isZh ? product.statusZh : product.statusEn}</small></span>
                   <ArrowRight size={16} aria-hidden="true" />
                 </button>
               })}
@@ -334,7 +351,7 @@ export default function ProductPortal({ lang = 'zh', onEnterReader, onLanguageCh
             <div className="portfolio-workbench portfolio-reveal">
               <div className="portfolio-product-tabs" role="tablist" aria-label={isZh ? '选择产品' : 'Choose a product'}>
                 {products.map((product, index) => <button key={product.name} type="button" role="tab" aria-selected={activeProductIndex === index} onClick={() => selectProduct(index)} className={`portfolio-product-tab tone-${product.tone} ${activeProductIndex === index ? 'is-active' : ''}`}>
-                  <span>0{index + 1}</span><strong>{product.name}</strong><small>{isZh ? product.statusZh : product.statusEn}</small>
+                  <span>0{index + 1}</span><span className="portfolio-product-name"><strong>{product.name}</strong>{product.aiEnabled && <AiBadge />}</span><small>{isZh ? product.statusZh : product.statusEn}</small>
                 </button>)}
               </div>
 
@@ -350,7 +367,7 @@ export default function ProductPortal({ lang = 'zh', onEnterReader, onLanguageCh
                   <div className={`portfolio-stage-media ${activeProduct.action || activeProduct.tone === 'radio' ? 'is-product-interface' : ''}`}><Image src={activeProduct.image} alt={`${isZh ? activeProduct.titleZh : activeProduct.titleEn} ${isZh ? '产品界面' : 'product interface'}`} fill sizes="(min-width:1024px) 760px, 100vw" className={activeProduct.action || activeProduct.tone === 'radio' ? 'object-contain object-center' : activeProduct.tone === 'proof' ? 'object-cover object-center' : 'object-cover object-top'} priority={activeProductIndex === 0} /></div>
                   <div className="portfolio-stage-copy">
                     <div className="portfolio-stage-copy-main">
-                      <h3 className="portfolio-stage-title"><span>{isZh ? activeProduct.titleZh : activeProduct.titleEn}</span>{activeProduct.tagsZh && <span className="portfolio-stage-title-tags">{(isZh ? activeProduct.tagsZh : activeProduct.tagsEn)?.map(tag => <span key={tag}>{tag}</span>)}</span>}</h3>
+                      <h3 className="portfolio-stage-title"><span className="portfolio-product-name"><span>{isZh ? activeProduct.titleZh : activeProduct.titleEn}</span>{activeProduct.aiEnabled && <AiBadge />}</span>{activeProduct.tagsZh && <span className="portfolio-stage-title-tags">{(isZh ? activeProduct.tagsZh : activeProduct.tagsEn)?.map(tag => <span key={tag}>{tag}</span>)}</span>}</h3>
                       <p>{isZh ? activeProduct.descZh : activeProduct.descEn}</p>
                     </div>
                     <div className="portfolio-product-actions">
@@ -367,7 +384,12 @@ export default function ProductPortal({ lang = 'zh', onEnterReader, onLanguageCh
         <section id="skills" className="portfolio-section portfolio-skills-band border-b border-[var(--border)]">
           <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-28">
             <div className="portfolio-section-heading portfolio-reveal"><p>02 / Agent Skills</p><h2>{isZh ? '把做事的方法，变成可复用的能力' : 'Turning working methods into reusable capabilities'}</h2><span>{isZh ? '从弄清问题，到设计、交付和处理风险。' : 'From clarifying the problem to design, delivery, and risk response.'}</span></div>
-            <div className="portfolio-skill-path mt-12">{skills.map(([slug, zh, en, descZh, descEn], index) => <a key={slug} href={`https://github.com/HachikoJ/${slug}`} target="_blank" rel="noopener noreferrer" className="portfolio-skill-step portfolio-reveal"><span className="portfolio-skill-number">{String(index + 1).padStart(2, '0')}</span><div><h3>{isZh ? zh : en}</h3><p>{isZh ? descZh : descEn}</p></div><ExternalLink size={16} aria-hidden="true" /></a>)}</div>
+            <div className="portfolio-skill-path mt-12">{skills.map((skill, index) => {
+              const content = <><span className="portfolio-skill-number">{String(index + 1).padStart(2, '0')}</span><div><div className="portfolio-skill-heading"><h3>{isZh ? skill.titleZh : skill.titleEn}</h3>{skill.workBuddyExpert && <span className="portfolio-skill-source">WorkBuddy {isZh ? '专家' : 'expert'}</span>}</div><p>{isZh ? skill.descZh : skill.descEn}</p></div>{skill.href && <ExternalLink size={16} aria-hidden="true" />}</>
+              return skill.href
+                ? <a key={skill.slug} href={skill.href} target="_blank" rel="noopener noreferrer" className="portfolio-skill-step portfolio-reveal">{content}</a>
+                : <div key={skill.slug} className="portfolio-skill-step portfolio-skill-static portfolio-reveal">{content}</div>
+            })}</div>
           </div>
         </section>
 
