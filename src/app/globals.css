@@ -236,7 +236,8 @@ canvas {
 .portfolio-product-stage.tone-proof { --product-tone: #315efb; --product-ink: #1a4a9f; border-color: #cbd8d2; background: #fbfaf6; box-shadow: 0 20px 55px rgba(28, 53, 50, .1), 0 1px 0 rgba(255,255,255,.95) inset; }
 .portfolio-product-stage.tone-proof .portfolio-stage-toolbar { background: #f1f4ef; border-color: #dbe3dc; }
 .portfolio-product-stage.tone-proof .portfolio-stage-media { background: #edf1ed; border-color: #dbe3dc; }
-.portfolio-product-stage.tone-proof .portfolio-stage-media img { object-position: center 35%; }
+.portfolio-product-stage.tone-proof .portfolio-stage-media, .portfolio-product-stage.tone-vault .portfolio-stage-media { min-height: 0; aspect-ratio: 16 / 9; }
+.portfolio-product-stage.tone-proof .portfolio-stage-media img, .portfolio-product-stage.tone-vault .portfolio-stage-media img { object-fit: contain; object-position: center; }
 .portfolio-product-stage.tone-proof .portfolio-status { background: #e5f2ec; color: #1b6a57; }
 .tone-proof { --product-tone: #315efb; --product-ink: #1a4a9f; }
 .tone-radio { --product-tone: #1978e5; --product-ink: #1663bc; }
