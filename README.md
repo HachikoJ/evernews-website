@@ -41,8 +41,8 @@ npm run start
 | 产品 | 地址 | 状态 |
 | --- | --- | --- |
 | 费曼读书助手 | <https://reader.deline.top/> | 已上线 |
-| 匿证 | <https://anonyproof.deline.top/> | 公开预览 |
-| 星仓印记 | <https://starvault.deline.top/> | 研发中 |
+| 匿证 | <https://anonyproof.deline.top/> | 已上线 |
+| 星仓印记 | <https://starvault.deline.top/> | 已上线 |
 | 神笔宝宝 | <https://magic-draw-kids.deline.top/> | 研发中 |
 | 听间 Tingjian | <https://audio.deline.top/> | 已上线 |
 

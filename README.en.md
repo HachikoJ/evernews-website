@@ -24,8 +24,8 @@ The static export is written to `out/`; `npm run start` serves it locally.
 | Product | Address | Status |
 | --- | --- | --- |
 | Feynman Reader | https://reader.deline.top/ | Live |
-| AnonyProof | https://anonyproof.deline.top/ | Public preview |
-| StarVault Imprint | https://starvault.deline.top/ | In development |
+| AnonyProof | https://anonyproof.deline.top/ | Live |
+| StarVault Imprint | https://starvault.deline.top/ | Live |
 | Magic Draw Kids | https://magic-draw-kids.deline.top/ | In development |
 | Tingjian | https://audio.deline.top/ | Live |
 
